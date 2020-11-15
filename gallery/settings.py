@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,6 +31,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+cloudinary.config( 
+  cloud_name = 'dqofyimn2',
+  api_key = '255523988776555',
+  api_secret = 'UKR2jJ2pR_WhPU-oeLfKcGb0hsc'
+)
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'photos',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +87,10 @@ WSGI_APPLICATION = 'gallery.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'photos',
+        'USER': 'kevin',
+        'PASSWORD' : 'Password2',
     }
 }
 
@@ -105,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
